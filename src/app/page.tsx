@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Send, XCircle, Bot } from 'lucide-react';
 import { Navbar } from '@/components/navbar';
 import { useUser, SignInButton } from '@clerk/nextjs';
+import ReactMarkdown from 'react-markdown';
 
 const roleToColorMap: Record<Message['role'], string> = {
   system: 'red',
@@ -70,9 +71,6 @@ export default function Chat() {
     return <div>Loading...</div>;
   }
 
-
-
-
   return (
     <>
       {/* <Navbar /> */}
@@ -112,7 +110,7 @@ export default function Chat() {
                 >
                   <div className="flex flex-row items-center">
                     {m.role !== 'user' && <Bot className="w-8 h-8 mr-2 p-1 text-violet-800 flex-shrink-0 border items-center bg-white rounded-full" />}
-                    <span className="flex-grow">{m.content}</span>
+                    <ReactMarkdown className="flex-grow">{m.content}</ReactMarkdown>
                   </div>
                   {m.role === 'data' && (
                     <>
